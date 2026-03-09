@@ -6,11 +6,16 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f5f5f5;
-    color: #333;
+
+
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  /* 添加微妙的背景模糊增强毛玻璃效果 */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
     line-height: 1.6;
     width: 60%;
+    height: 100vh;
     margin: 0 auto;
 }
 
@@ -62,6 +67,77 @@ header {
     cursor: pointer;
     font-size: 15px;
     transition: background-color 0.3s;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.username-container {
+    position: relative;
+    cursor: pointer;
+}
+
+.username {
+    font-weight: 500;
+    color: #1E40AF;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+
+
+.user-menu {
+
+    font-size: 14px;
+    
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 110px;
+    background-color: #ffffff;
+ 
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+    transform: translateY(-10px);
+}
+
+.username-container:hover .user-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.user-menu ul {
+    
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.user-menu li {
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.user-menu li:last-child {
+    border-bottom: none;
+}
+
+.user-menu a {
+    display: block;
+    padding: 10px 15px;
+    color:#1E40AF;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.user-menu a:hover {
+    background-color: #F3F4F6;
 }
 
 .login-btn button:hover {
@@ -128,22 +204,59 @@ header {
 /* 排行榜区域 */
 .rankings-section {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     margin-bottom: 40px;
-    gap: 20px;
-    
+    align-items: stretch; /* 确保子项高度拉伸一致 */
 }
 
 .ranking-item {
-    flex: 1;
-    background-color: white;
+    
+     
+   background: rgba(255, 255, 255, 0.25); /* 半透明白色背景 */
+  backdrop-filter: blur(12px); /* 核心毛玻璃效果 */
+  -webkit-backdrop-filter: blur(12px); /* Safari支持 */
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.3); /* 轻微边框 */
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    0 4px 16px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4); /* 内阴影增强立体感 */
     border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 16px;
+    width: 25%;
+    aspect-ratio: 1; /* 1:1 的正方形 */
+    /* 或者 */
+    height: 300px; /* 固定高度 */
+    
 }
 
-.ranking-item h4 {
+.ranking-item-title{
+
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #1E40AF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+
+
+.more-link {
+    text-decoration: none;
+    color: #666;
+    margin-bottom: 15px;
     font-size: 13px;
+}
+.more-link img {
+    width: 19px;
+    height: 11px;
+}
+
+
+.ranking-item h4 {
+    font-size: 16px;
     margin-bottom: 15px;
     color: #1E40AF;
 }
@@ -155,17 +268,6 @@ header {
     padding: 15px;
 }
 
-.ranking-item {
-    background-color: white;
-    border: 1px solid #E5E7EB;
-    border-radius: 4px;
-    padding: 12px;
-    margin-bottom: 8px;
-    transition: all 0.3s;
-}
-
-
-
 .ranking-item:last-child {
     margin-bottom: 0;
 }
@@ -174,6 +276,16 @@ header {
     min-height: auto;
     background-color: transparent;
     padding: 0;
+    font-size: 14px;
+}
+
+.ranking-search-item {
+    margin-bottom: 15px;
+    margin-left: 15px;
+
+    display: flex;
+    justify-content: space-between;
+    
 }
 
 .ranking-link {
@@ -181,90 +293,33 @@ header {
     text-decoration: none;
     font-weight: 300;
     transition: color 0.3s;
-    display: block;
+    margin-left: 5px;
 }
-
 
 .ranking-search-time,
-.ranking-contributions {
+
+
+.ranking-contributions-name {
+    font-size: 14px;
+    color: #2d2f33;
+}
+.ranking-contributions-value {
     font-size: 12px;
     color: #6B7280;
-    margin-top: 4px;
+    
 }
-在
-.no-result {
-    grid-column: 1 / -1;
-    text-align: center;
-    padding: 40px;
-    color: #6B7280;
-    font-size: 16px;
-}
+
+
+
+
+
+
+
 
 /* 名词列表区域 */
-.words-section {
-    margin-bottom: 40px;
-}
 
-.words-section h2 {
-    font-size: 15px;
-    margin-bottom: 20px;
-    color: #1E40AF;
-}
 
-.words-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-}
 
-.word-card {
-    background-color: white;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
-    cursor: pointer;
-}
-
-.word-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.word-card h3 {
-    font-size: 18px;
-    margin-bottom: 10px;
-    color: #1E40AF;
-}
-
-.word-card .word-type {
-    display: inline-block;
-    background-color: #3B82F6;
-    color: white;
-    padding: 4px 12px;
-    border-radius: 12px;
-    font-size: 12px;
-    margin-bottom: 15px;
-}
-
-.word-card .word-desc {
-    font-size: 14px;
-    color: #6B7280;
-    margin-bottom: 15px;
-    line-height: 1.5;
-}
-
-.word-card .word-link {
-    font-size: 14px;
-    color: #3B82F6;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.word-card .word-link:hover {
-    color: #2563EB;
-    text-decoration: underline;
-}
 
 /* 页脚样式 */
 

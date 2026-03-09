@@ -20,10 +20,11 @@
 
       
 
-
                 <div class="login-btn">
-                    <button>登录</button>
+                    <a href="./model/login/login.html"><button>登录</button></a>
                 </div>
+
+
             </div>
         </div>
     </header>
@@ -41,36 +42,31 @@
 
             <div class="rankings-section">
                 <div class="ranking-item">
-                    <h4>热搜榜</h4>
+                    <div class="ranking-item-title">
+                        <h4>热搜榜</h4> <a href="#" class="more-link">更多<img src="../image/alt-arrow-right-svgrepo-com.svg" alt="Arrow Right Icon"></a>
+                    </div>  
                     <div class="ranking-content" id="hot-search"></div>
                 </div>
+
+
                 <div class="ranking-item">
-                    <h4>贡献榜</h4>
-                    <div class="ranking-content" id="contribution-rank"></div>
+                    <div class="ranking-item-title">
+                        <h4>贡献榜</h4> <a href="#" class="more-link">更多<img src="../image/alt-arrow-right-svgrepo-com.svg" alt="Arrow Right Icon"></a>
+                    </div>  
+                    <div class="ranking-contributions" id="contribution-rank"></div>
                 </div>
+              
             </div>
 
-            <div class="words-section">
-                <h2>Key_List</h2>
-                <div class="words-container" id="words-container">
 
-                    <div class="keyword-content" id="keyword-rank">
-<img alt="github-snake" 
-src="https://camo.githubusercontent.com/685f161552c898405a4ab62b059a6ad100c8329e8bd4152597ba3aa45ff0b238/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f73756e3032323553554e2f73756e3032323553554e2f70726f66696c652d736e616b652d636f6e747269622f6769746875622d636f6e747269627574696f6e2d677269642d736e616b652d6461726b2e737667" data-canonical-src="https://cdn.jsdelivr.net/gh/sun0225SUN/sun0225SUN/profile-snake-contrib/github-contribution-grid-snake-dark.svg"
- style="visibility: visible; max-width: 100%;">
-
-                    </div>       
-
-
-                </div>
-            </div>
         </div>
     </main>
-
 
 
     <script src="js/data.js"></script>
     <script src="js/search.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/check-auth.js"></script>
+
 </body>
 </html>

@@ -1,0 +1,162 @@
+/* 基础重置 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  /* 添加微妙的背景模糊增强毛玻璃效果 */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* 毛玻璃容器 */
+.glass-container {
+  width: 100%;
+  max-width: 800px;
+  background: rgba(255, 255, 255, 0.25); /* 半透明白色背景 */
+  backdrop-filter: blur(12px); /* 核心毛玻璃效果 */
+  -webkit-backdrop-filter: blur(12px); /* Safari支持 */
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.3); /* 轻微边框 */
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    0 4px 16px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4); /* 内阴影增强立体感 */
+  padding: 40px 30px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 网格布局 */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 30px;
+  width: 100%;
+}
+
+/* 功能卡片 */
+.feature-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px 15px;
+  background: rgba(255, 255, 255, 0.15); /* 更浅的背景增强层次 */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* 图标容器 */
+.icon-container {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 不同颜色的图标背景 */
+.icon-real-listings {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.icon-accident-housing {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.icon-subsidies {
+  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+}
+
+.icon-property {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+}
+
+.icon-loan {
+  background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
+}
+
+.icon-tax-rate {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.icon-security {
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+}
+
+.icon-make-loan {
+  background: linear-gradient(135deg, #ff9966 0%, #ff5e62 100%);
+}
+
+/* 图标样式 */
+.icon {
+  font-size: 24px;
+  color: white;
+  font-weight: bold;
+}
+
+/* 文字样式 */
+.feature-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .glass-container {
+    padding: 30px 20px;
+    max-width: 95%;
+  }
+  
+  .feature-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 20px;
+  }
+  
+  .icon-container {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .feature-text {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .feature-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  
+  .glass-container {
+    padding: 25px 15px;
+  }
+}

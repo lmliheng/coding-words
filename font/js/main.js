@@ -8,13 +8,14 @@ function renderHotSearch() {
 
     // 渲染热搜榜数据
     hotSearchData.forEach((item, index) => {
-        const rankingItem = document.createElement('div');
-        rankingItem.className = 'ranking-item';
-        rankingItem.innerHTML = `
-            <a href="${item.key_word_href}" class="ranking-link">容器 ${index + 1}</a>
-            <div class="ranking-search-time">搜索量: ${item.key_word_searchtime}</div>
+        const rankingSearchItem = document.createElement('div');
+        rankingSearchItem.className = 'ranking-search-item';
+        rankingSearchItem.innerHTML = `
+            
+            <a href="${item.key_word_href}" class="ranking-link"> 容器 ${index + 1}</a>  111
+            
         `;
-        hotSearchContainer.appendChild(rankingItem);
+        hotSearchContainer.appendChild(rankingSearchItem);
     });
 }
 
@@ -28,13 +29,16 @@ function renderContributionRank() {
 
     // 渲染贡献榜数据
     contributionData.forEach((item, index) => {
-        const rankingItem = document.createElement('div');
-        rankingItem.className = 'ranking-item';
-        rankingItem.innerHTML = `
-            <div class="ranking-name">${item.name}</div>
-            <div class="ranking-contributions">贡献值: ${item.contributions}</div>
+        const rankingSearchItem = document.createElement('div');
+        rankingSearchItem.className = 'ranking-search-item';
+        rankingSearchItem.innerHTML = `
+            
+            
+            <text class="ranking-contributions-name">${item.name}</text>  
+            <text class="ranking-contributions-value">贡献值: ${item.contributions}</text>
+           
         `;
-        contributionContainer.appendChild(rankingItem);
+        contributionContainer.appendChild(rankingSearchItem);
     });
 }
 
