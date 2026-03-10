@@ -1,45 +1,64 @@
 // 渲染热搜榜
-function renderHotSearch() {
+async function renderHotSearch() {
     const hotSearchContainer = document.getElementById('hot-search');
     if (!hotSearchContainer) return;
 
     // 清空容器
     hotSearchContainer.innerHTML = '';
 
-    // 渲染热搜榜数据
-    hotSearchData.forEach((item, index) => {
-        const rankingSearchItem = document.createElement('div');
-        rankingSearchItem.className = 'ranking-search-item';
-        rankingSearchItem.innerHTML = `
-            
-            <a href="${item.key_word_href}" class="ranking-link"> 容器 ${index + 1}</a>  111
-            
-        `;
-        hotSearchContainer.appendChild(rankingSearchItem);
-    });
+    try {
+        // 从后端API获取热搜榜数据
+        const response = await fetch('http://localhost:3000/api/rankings/hot-search');
+        const data = await response.json();
+        
+        if (response.ok) {
+            // 渲染热搜榜数据
+            data.hotSearch.forEach((item, index) => {
+                const rankingSearchItem = document.createElement('div');
+                rankingSearchItem.className = 'ranking-search-item';
+                rankingSearchItem.innerHTML = `
+                    <a href="#" class="ranking-link">${index + 1}. ${item.word_name}</a>
+                `;
+                hotSearchContainer.appendChild(rankingSearchItem);
+            });
+        } else {
+            console.error('获取热搜榜失败:', data.message);
+        }
+    } catch (error) {
+        console.error('获取热搜榜失败:', error);
+    }
 }
 
 // 渲染贡献榜
-function renderContributionRank() {
+async function renderContributionRank() {
     const contributionContainer = document.getElementById('contribution-rank');
     if (!contributionContainer) return;
 
     // 清空容器
     contributionContainer.innerHTML = '';
 
-    // 渲染贡献榜数据
-    contributionData.forEach((item, index) => {
-        const rankingSearchItem = document.createElement('div');
-        rankingSearchItem.className = 'ranking-search-item';
-        rankingSearchItem.innerHTML = `
-            
-            
-            <text class="ranking-contributions-name">${item.name}</text>  
-            <text class="ranking-contributions-value">贡献值: ${item.contributions}</text>
-           
-        `;
-        contributionContainer.appendChild(rankingSearchItem);
-    });
+    try {
+        // 从后端API获取贡献榜数据
+        const response = await fetch('http://localhost:3000/api/rankings/contribution');
+        const data = await response.json();
+        
+        if (response.ok) {
+            // 渲染贡献榜数据
+            data.contribution.forEach((item, index) => {
+                const rankingSearchItem = document.createElement('div');
+                rankingSearchItem.className = 'ranking-search-item';
+                rankingSearchItem.innerHTML = `
+                    <text class="ranking-contributions-name">${index + 1}. ${item.username}</text>  
+                    <text class="ranking-contributions-value">贡献值: ${item.contribution_value}</text>
+                `;
+                contributionContainer.appendChild(rankingSearchItem);
+            });
+        } else {
+            console.error('获取贡献榜失败:', data.message);
+        }
+    } catch (error) {
+        console.error('获取贡献榜失败:', error);
+    }
 }
 
 // 渲染专业名词列表
@@ -65,9 +84,9 @@ function renderWords() {
 }
 
 // 初始化页面
-function init() {
-    renderHotSearch();
-    renderContributionRank();
+async function init() {
+    await renderHotSearch();
+    await renderContributionRank();
     renderWords();
 }
 

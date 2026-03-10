@@ -18,12 +18,14 @@ async function checkAuth() {
         });
         const data = await response.json();
         if (response.status === 200) {
+
             console.log('用户已登录，token存在');
             console.log('token:', token);
             console.log(data.user);
             
             // 更新登录按钮为用户名
             updateLoginButton(data.user[0].username);
+            
         } else {
             console.log('用户信息存在，但token不存在');
             updateLoginButton(null);

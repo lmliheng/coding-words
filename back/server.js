@@ -77,12 +77,13 @@ app.get('/', (req, res) => {
 async function startServer() {
   await connectDB();
   
-  // 数据库连接成功后再导入路由
-
-  
-  const authRoutes = require('./routes/auth.js');
-
+      // 数据库连接成功后再导入路由
+  const authRoutes = require('./routes/auth');
+  const uploadRoutes = require('./routes/upload');
+  const rankingsRoutes = require('./routes/rankings');
   app.use('/api/auth', authRoutes);
+  app.use('/api/upload', uploadRoutes);
+  app.use('/api/rankings', rankingsRoutes);
   
   const PORT = process.env.PORT || 3000;
   app.listen(PORT, () => {
