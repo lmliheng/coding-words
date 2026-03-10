@@ -51,8 +51,9 @@ function updateLoginButton(username) {
                     <span class="username">${username}</span>
                     <div class="user-menu">
                         <ul>
-                            <li><a href="#">账号设置</a></li>
+                            <li><a href="./model/myInfo/myInfo.html">账号设置</a></li>
                             <li><a href="./model/upload_word/upload_word.html">提供word</a></li>
+                            <li><a href="./model/manage/manage.html">管理</a></li>
                             <li><a href="#" id="logout-menu-btn">退出登录</a></li>
                         </ul>
                     </div>

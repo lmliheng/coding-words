@@ -171,12 +171,57 @@ router.post('/login', async (req, res) => {
     console.error(error);
     res.status(500).json({ message: '服务器错误' });
   }
-}),
+});
 
-
-
-
-
-
+// 更新用户信息
+router.put('/update-info', async (req, res) => {
+  const token = req.headers['authorization']?.split(' ')[1];
+  if (!token) {
+    return res.status(401).json({ message: '未授权' });
+  }
+  
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const { username, email, password } = req.body;
+    
+    // 验证数据
+    if (!username || !email) {
+      return res.status(400).json({ message: '用户名和邮箱不能为空' });
+    }
+    
+    // 构建更新语句
+    let updateQuery = 'UPDATE user SET username = ?, email = ?';
+    let updateParams = [username, email];
+    
+    // 如果提供了密码，添加到更新语句
+    if (password) {
+      // 密码加密
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(password, salt);
+      updateQuery += ', password = ?';
+      updateParams.push(hashedPassword);
+    }
+    
+    updateQuery += ' WHERE id = ?';
+    updateParams.push(decoded.id);
+    
+    // 执行更新
+    await db.execute(updateQuery, updateParams);
+    
+    // 获取更新后的用户信息
+    const [updatedUser] = await db.execute(
+      'SELECT id, username, email, contribution_value, created_at, updated_at FROM user WHERE id = ?',
+      [decoded.id]
+    );
+    
+    res.status(200).json({
+      message: '个人信息更新成功',
+      user: updatedUser[0]
+    });
+  } catch (error) {
+    console.error('更新用户信息失败:', error);
+    res.status(500).json({ message: '服务器错误' });
+  }
+});
 
 module.exports = router;

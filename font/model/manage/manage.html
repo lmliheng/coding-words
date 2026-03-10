@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理中心</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="manage-header">
+            <h1>管理中心</h1>
+            <nav class="manage-nav">
+                <a href="../../index.html" class="nav-link">返回首页</a>
+            </nav>
+        </header>
+        
+        <main class="manage-content">
+            <section class="manage-section">
+                <h2>我的专业名词</h2>
+                <div class="section-actions">
+                    <a href="../upload_word/upload_word.html" class="add-btn">添加专业名词</a>
+                </div>
+                <div class="words-table-container">
+                    <table class="words-table" id="words-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>专业名词</th>
+                                <th>标签</th>
+                                <th>创建时间</th>
+                                <th>阅读量</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="words-table-body">
+                            <!-- 数据将通过JavaScript动态填充 -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pagination" id="pagination">
+                    <!-- 分页将通过JavaScript动态填充 -->
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <script src="script.js"></script>
+    <script>
+            // 监听ESC键
+                document.addEventListener('keydown', function(event) {
+                        if (event.key === 'Escape') {
+            // 返回首页
+                window.location.href = '../../index.html';
+    }
+});
+    </script>
+</body>
+</html>

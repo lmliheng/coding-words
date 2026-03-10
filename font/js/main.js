@@ -10,14 +10,15 @@ async function renderHotSearch() {
         // 从后端API获取热搜榜数据
         const response = await fetch('http://localhost:3000/api/rankings/hot-search');
         const data = await response.json();
-        
+        console.log('热搜榜数据:', data);
         if (response.ok) {
             // 渲染热搜榜数据
             data.hotSearch.forEach((item, index) => {
                 const rankingSearchItem = document.createElement('div');
                 rankingSearchItem.className = 'ranking-search-item';
                 rankingSearchItem.innerHTML = `
-                    <a href="#" class="ranking-link">${index + 1}. ${item.word_name}</a>
+                    <text>${index + 1}. <a href="model/word/word.html?id=${item.id}" class="ranking-link">${item.word_name}</a></text>
+                    <text class="ranking-search-time">${item.read_time}</text>
                 `;
                 hotSearchContainer.appendChild(rankingSearchItem);
             });

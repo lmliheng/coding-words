@@ -74,5 +74,14 @@
     
     <script src="https://cdn.jsdelivr.net/npm/easymde@2.18.0/dist/easymde.min.js"></script>
     <script src="script.js"></script>
+    <script>
+            // 监听ESC键
+                document.addEventListener('keydown', function(event) {
+                        if (event.key === 'Escape') {
+            // 返回首页
+                window.location.href = '../../index.html';
+    }
+});
+    </script>
 </body>
 </html>

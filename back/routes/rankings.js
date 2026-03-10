@@ -28,7 +28,7 @@ router.get('/hot-search', async (req, res) => {
   try {
     // 查询word表中read_time最大的5个记录
     const [words] = await db.execute(
-      'SELECT id, word_name FROM word ORDER BY read_time DESC LIMIT 5'
+      'SELECT id, word_name, read_time FROM word ORDER BY read_time DESC LIMIT 5'
     );
     
     res.status(200).json({

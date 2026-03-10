@@ -282,7 +282,6 @@ header {
 .ranking-search-item {
     margin-bottom: 15px;
     margin-left: 15px;
-
     display: flex;
     justify-content: space-between;
     
@@ -293,10 +292,13 @@ header {
     text-decoration: none;
     font-weight: 300;
     transition: color 0.3s;
-    margin-left: 5px;
+    
 }
 
-.ranking-search-time,
+.ranking-search-time{
+    font-size: 12px;
+    color: #6B7280;
+}
 
 
 .ranking-contributions-name {

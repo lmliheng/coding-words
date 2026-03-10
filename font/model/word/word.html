@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>专业名词详情</title>
+    <link rel="stylesheet" href="style.css">
+   <link rel="stylesheet" 
+          href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="word-header">
+            
+            <nav class="word-nav">
+                <a href="../../index.html" class="nav-link" >返回首页</a>
+                
+            </nav>
+        </header>
+        
+        <main class="word-content">
+            <div class="word-meta">
+                <h1 id="word-title">专业名词</h1>
+                <div class="tags" id="word-tags"></div>
+                <div class="update-time" id="word-update-time"></div>
+            </div>
+            
+            <div class="markdown-body" id="word-body">
+                <!-- 富文本内容将通过JavaScript动态填充 -->
+            </div>
+        </main>
+    </div>
+    
+    <script src="script.js"></script>
+
+    <script>
+            // 监听ESC键
+                document.addEventListener('keydown', function(event) {
+                        if (event.key === 'Escape') {
+            // 返回首页
+                window.location.href = '../../index.html';
+    }
+});
+    </script>
+</body>
+</html>

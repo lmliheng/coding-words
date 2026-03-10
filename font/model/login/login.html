@@ -87,7 +87,16 @@
         }
         login();
     });
-    
+
+
+
+        // 监听ESC键
+        document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+        // 返回首页
+            window.location.href = '../../index.html';
+    }
+});
 
 </script>
 </html>

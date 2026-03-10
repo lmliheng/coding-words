@@ -81,9 +81,13 @@ async function startServer() {
   const authRoutes = require('./routes/auth');
   const uploadRoutes = require('./routes/upload');
   const rankingsRoutes = require('./routes/rankings');
+  const manageRoutes = require('./routes/manage');
+  const wordRoutes = require('./routes/word');
   app.use('/api/auth', authRoutes);
   app.use('/api/upload', uploadRoutes);
   app.use('/api/rankings', rankingsRoutes);
+  app.use('/api/manage', manageRoutes);
+  app.use('/api/Onlyword', wordRoutes);
   
   const PORT = process.env.PORT || 3000;
   app.listen(PORT, () => {
