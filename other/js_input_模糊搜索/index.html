@@ -1,0 +1,438 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>模糊搜索示例 - 完善版</title>  
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            padding: 30px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.2rem;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        
+        .search-section {
+            margin-bottom: 30px;
+        }
+        
+        .search-box {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 1.1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        .search-box:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        .search-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        .results-section h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        #searchResults {
+            list-style: none;
+        }
+        
+        .result-item {
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-radius: 6px;
+            margin-bottom: 5px;
+        }
+        
+        .result-item:hover {
+            background-color: #f8f9fa;
+            transform: translateX(5px);
+        }
+        
+        .result-item.highlight {
+            background-color: #e8f4fc;
+            border-left: 4px solid #3498db;
+        }
+        
+        .no-results {
+            text-align: center;
+            color: #95a5a6;
+            padding: 30px;
+            font-style: italic;
+        }
+        
+        .explanation {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 40px;
+            border-left: 4px solid #2ecc71;
+        }
+        
+        .explanation h3 {
+            color: #27ae60;
+            margin-bottom: 15px;
+        }
+        
+        .explanation p {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        
+        .code-block {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-size: 0.9rem;
+        }
+        
+        .code-comment {
+            color: #7f8c8d;
+        }
+        
+        .sample-data {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .data-tag {
+            background-color: #e0f7fa;
+            color: #006064;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .control-btn {
+            padding: 8px 16px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .control-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .control-btn.reset {
+            background-color: #e74c3c;
+        }
+        
+        .control-btn.reset:hover {
+            background-color: #c0392b;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>  
+<body>  
+    <div class="container">
+        <h1>模糊搜索功能演示</h1>
+        <p class="subtitle">在输入框中输入关键词，实时查看模糊匹配结果</p>
+        
+        <div class="search-section">
+            <input type="text" id="searchInput" class="search-box" placeholder="输入水果名称进行搜索...">  
+            <div class="search-info">
+                <span id="resultCount">共有 8 个数据项</span>
+                <span id="matchCount">输入关键词开始搜索</span>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button class="control-btn" id="showAllBtn">显示所有数据</button>
+            <button class="control-btn reset" id="clearBtn">清空搜索</button>
+        </div>
+        
+        <div class="results-section">
+            <h2>搜索结果 (<span id="resultsCount">0</span> 个匹配项)</h2>
+            <ul id="searchResults">
+                <li class="no-results">输入搜索词查看结果...</li>
+            </ul>  
+        </div>
+        
+        <div class="sample-data">
+            <div class="data-tag">尝试搜索: 苹果</div>
+            <div class="data-tag">尝试搜索: 橙</div>
+            <div class="data-tag">尝试搜索: 桃</div>
+            <div class="data-tag">尝试搜索: 子</div>
+        </div>
+        
+        <div class="explanation">
+            <h3>模糊搜索原理说明</h3>
+            <p><strong>1. 数据准备：</strong>首先需要一个数据数组，包含要搜索的所有项目。</p>
+            <div class="code-block">
+// 示例数据数组<br>
+const data = [<br>
+&nbsp;&nbsp;{ id: 1, name: '苹果' },<br>
+&nbsp;&nbsp;{ id: 2, name: '香蕉' },<br>
+&nbsp;&nbsp;{ id: 3, name: '橙子' },<br>
+&nbsp;&nbsp;// ... 更多数据<br>
+];
+            </div>
+            
+            <p><strong>2. 监听用户输入：</strong>通过 input 事件监听用户在搜索框的输入。</p>
+            <div class="code-block">
+// 监听输入框的 input 事件（每次输入都会触发）<br>
+searchInput.addEventListener('input', function(event) {<br>
+&nbsp;&nbsp;<span class="code-comment">// 获取用户输入的值，并转换为小写（实现不区分大小写搜索）</span><br>
+&nbsp;&nbsp;const query = event.target.value.trim().toLowerCase();<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;<span class="code-comment">// 执行搜索并显示结果</span><br>
+&nbsp;&nbsp;performSearch(query);<br>
+});
+            </div>
+            
+            <p><strong>3. 执行模糊搜索：</strong>使用数组的 filter 方法和字符串的 includes 方法进行匹配。</p>
+            <div class="code-block">
+function performSearch(query) {<br>
+&nbsp;&nbsp;<span class="code-comment">// 如果搜索词为空，显示所有数据</span><br>
+&nbsp;&nbsp;if (query === '') {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;displaySearchResults(data);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;return;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;<span class="code-comment">// filter 方法遍历数组，对每个元素执行测试函数</span><br>
+&nbsp;&nbsp;<span class="code-comment">// includes 方法检查字符串是否包含指定的子字符串</span><br>
+&nbsp;&nbsp;const filteredData = data.filter(item => {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;return item.name.toLowerCase().includes(query);<br>
+&nbsp;&nbsp;});<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;<span class="code-comment">// 显示过滤后的结果</span><br>
+&nbsp;&nbsp;displaySearchResults(filteredData);<br>
+}
+            </div>
+            
+            <p><strong>4. 显示结果：</strong>动态创建列表元素显示搜索结果。</p>
+            <div class="code-block">
+function displaySearchResults(results) {<br>
+&nbsp;&nbsp;<span class="code-comment">// 清空之前的搜索结果</span><br>
+&nbsp;&nbsp;searchResults.innerHTML = '';<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;<span class="code-comment">// 如果没有匹配结果，显示提示信息</span><br>
+&nbsp;&nbsp;if (results.length === 0) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;const noResults = document.createElement('li');<br>
+&nbsp;&nbsp;&nbsp;&nbsp;noResults.className = 'no-results';<br>
+&nbsp;&nbsp;&nbsp;&nbsp;noResults.textContent = '没有找到匹配的结果';<br>
+&nbsp;&nbsp;&nbsp;&nbsp;searchResults.appendChild(noResults);<br>
+&nbsp;&nbsp;} else {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment">// 遍历匹配结果，创建列表项</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;results.forEach(item => {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const li = document.createElement('li');<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;li.className = 'result-item';<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;li.textContent = item.name;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;searchResults.appendChild(li);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;});<br>
+&nbsp;&nbsp;}<br>
+}
+            </div>
+            
+            <p><strong>关键点：</strong></p>
+            <p>• <strong>toLowerCase()</strong>：将字符串转换为小写，实现不区分大小写的搜索</p>
+            <p>• <strong>includes()</strong>：检查字符串是否包含指定子字符串，返回布尔值</p>
+            <p>• <strong>filter()</strong>：遍历数组，对每个元素执行测试函数，返回通过测试的元素组成的新数组</p>
+            <p>• <strong>trim()</strong>：去除字符串两端的空格，避免搜索" apple "时匹配不到"apple"</p>
+        </div>
+    </div>
+
+    <script>
+        // 更丰富的数据集
+        const data = [  
+            { id: 1, name: '苹果' },  
+            { id: 2, name: '香蕉' },  
+            { id: 3, name: '橙子' },  
+            { id: 4, name: '桃子' },  
+            { id: 5, name: '葡萄' },  
+            { id: 6, name: '西瓜' },  
+            { id: 7, name: '草莓' },  
+            { id: 8, name: '菠萝' },
+            { id: 9, name: '芒果' },
+            { id: 10, name: '猕猴桃' },
+            { id: 11, name: '柠檬' },
+            { id: 12, name: '樱桃' },
+            { id: 13, name: '蓝莓' },
+            { id: 14, name: '石榴' },
+            { id: 15, name: '火龙果' }
+        ];  
+        
+        const searchInput = document.getElementById('searchInput');  
+        const searchResults = document.getElementById('searchResults');  
+        const resultCount = document.getElementById('resultCount');
+        const matchCount = document.getElementById('matchCount');
+        const resultsCount = document.getElementById('resultsCount');
+        const showAllBtn = document.getElementById('showAllBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        
+        // 初始化显示数据统计
+        resultCount.textContent = `共有 ${data.length} 个数据项`;
+        
+        // 显示所有数据
+        function showAllData() {
+            displaySearchResults(data);
+            searchInput.value = '';
+            matchCount.textContent = '显示所有数据';
+            resultsCount.textContent = data.length;
+        }
+        
+        // 初始显示所有数据
+        showAllData();
+        
+        // 监听输入框的input事件  
+        searchInput.addEventListener('input', function(event) {  
+            const query = event.target.value.trim().toLowerCase();
+            performSearch(query);
+        });
+        
+        // 执行搜索功能
+        function performSearch(query) {
+            if (query === '') {
+                showAllData();
+                return;
+            }
+            
+            // 使用filter方法进行模糊搜索
+            const filteredData = data.filter(item => {
+                // includes方法检查name是否包含查询字符串
+                return item.name.toLowerCase().includes(query);
+            });
+            
+            // 显示搜索结果
+            displaySearchResults(filteredData);
+            
+            // 更新匹配信息
+            matchCount.textContent = `匹配到 ${filteredData.length} 个结果`;
+            matchCount.style.color = filteredData.length > 0 ? '#27ae60' : '#e74c3c';
+        }
+        
+        // 显示搜索结果的函数
+        function displaySearchResults(results) {  
+            // 清空之前的搜索结果  
+            searchResults.innerHTML = '';  
+            
+            // 更新结果计数
+            resultsCount.textContent = results.length;
+            
+            // 如果没有匹配结果，显示提示信息
+            if (results.length === 0) {
+                const noResults = document.createElement('li');
+                noResults.className = 'no-results';
+                noResults.textContent = '没有找到匹配的结果';
+                searchResults.appendChild(noResults);
+                return;
+            }
+            
+            // 遍历匹配项数组，创建对应的li元素并添加到ul中  
+            results.forEach(item => {  
+                const li = document.createElement('li');  
+                li.className = 'result-item';
+                li.textContent = item.name;
+                li.setAttribute('data-id', item.id);
+                
+                // 添加点击事件
+                li.addEventListener('click', function() {
+                    // 移除之前的高亮
+                    document.querySelectorAll('.result-item').forEach(el => {
+                        el.classList.remove('highlight');
+                    });
+                    
+                    // 高亮当前项
+                    this.classList.add('highlight');
+                    
+                    // 可以在这里添加其他操作，比如显示详情等
+                    console.log(`选中了: ${item.name} (ID: ${item.id})`);
+                });
+                
+                searchResults.appendChild(li);  
+            });  
+        }
+        
+        // 显示所有数据按钮事件
+        showAllBtn.addEventListener('click', showAllData);
+        
+        // 清空搜索按钮事件
+        clearBtn.addEventListener('click', function() {
+            searchInput.value = '';
+            showAllData();
+            searchInput.focus();
+        });
+        
+        // 为示例标签添加点击事件
+        document.querySelectorAll('.data-tag').forEach(tag => {
+            tag.addEventListener('click', function() {
+                const text = this.textContent.replace('尝试搜索: ', '').trim();
+                searchInput.value = text;
+                performSearch(text);
+                searchInput.focus();
+            });
+        });
+        
+        // 输入框获取焦点
+        searchInput.focus();
+    </script>  
+</body>  
+</html>

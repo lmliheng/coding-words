@@ -57,6 +57,13 @@ header {
 }
 
 
+.back-link {
+    color: #3b82f6;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
 .login-btn button {
     
     background-color: #1E40AF;

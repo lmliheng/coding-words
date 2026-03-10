@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>富文本编辑器与渲染器</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .main-content {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .editor-container, .preview-container {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+        
+        .section-title {
+            padding: 15px 20px;
+            background-color: #4a6fa5;
+            color: white;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .toolbar {
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #eaeaea;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .toolbar-btn {
+            padding: 8px 12px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .toolbar-btn:hover {
+            background-color: #f0f0f0;
+            border-color: #aaa;
+        }
+        
+        .toolbar-btn.active {
+            background-color: #4a6fa5;
+            color: white;
+            border-color: #4a6fa5;
+        }
+        
+        .toolbar-group {
+            display: flex;
+            border-right: 1px solid #ddd;
+            padding-right: 8px;
+        }
+        
+        .editor-area {
+            padding: 20px;
+            min-height: 400px;
+            outline: none;
+            overflow-y: auto;
+            max-height: 500px;
+        }
+        
+        .preview-area {
+            padding: 20px;
+            min-height: 400px;
+            overflow-y: auto;
+            max-height: 500px;
+            line-height: 1.7;
+        }
+        
+        .preview-area h1, .preview-area h2, .preview-area h3 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .preview-area h1 {
+            border-bottom: 2px solid #4a6fa5;
+            padding-bottom: 5px;
+        }
+        
+        .preview-area p {
+            margin-bottom: 15px;
+        }
+        
+        .preview-area ul, .preview-area ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .preview-area blockquote {
+            border-left: 4px solid #4a6fa5;
+            padding-left: 15px;
+            margin-left: 0;
+            font-style: italic;
+            color: #555;
+            background-color: #f9f9f9;
+            padding: 10px 15px;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .preview-area a {
+            color: #3498db;
+            text-decoration: none;
+            border-bottom: 1px dotted #3498db;
+        }
+        
+        .preview-area a:hover {
+            color: #2980b9;
+            border-bottom: 1px solid #2980b9;
+        }
+        
+        .preview-area code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        
+        .preview-area pre {
+            background-color: #2d3a4b;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .editor-container, .preview-container {
+                width: 100%;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-edit"></i> 富文本编辑器与渲染器</h1>
+            <p class="subtitle">在左侧编辑内容，右侧实时预览渲染效果</p>
+        </header>
+        
+        <div class="main-content">
+            <div class="editor-container">
+                <div class="section-title">
+                    <i class="fas fa-keyboard"></i> 编辑区域
+                </div>
+                
+                <div class="toolbar">
+                    <div class="toolbar-group">
+                        <button class="toolbar-btn" data-command="bold" title="加粗">
+                            <i class="fas fa-bold"></i>
+                        </button>
+                        <button class="toolbar-btn" data-command="italic" title="斜体">
+                            <i class="fas fa-italic"></i>
+                        </button>
+                        <button class="toolbar-btn" data-command="underline" title="下划线">
+                            <i class="fas fa-underline"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="toolbar-group">
+                        <button class="toolbar-btn" data-command="formatBlock" data-value="h1" title="标题1">
+                            H1
+                        </button>
+                        <button class="toolbar-btn" data-command="formatBlock" data-value="h2" title="标题2">
+                            H2
+                        </button>
+                        <button class="toolbar-btn" data-command="formatBlock" data-value="p" title="段落">
+                            P
+                        </button>
+                    </div>
+                    
+                    <div class="toolbar-group">
+                        <button class="toolbar-btn" data-command="insertUnorderedList" title="无序列表">
+                            <i class="fas fa-list-ul"></i>
+                        </button>
+                        <button class="toolbar-btn" data-command="insertOrderedList" title="有序列表">
+                            <i class="fas fa-list-ol"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="toolbar-group">
+                        <button class="toolbar-btn" data-command="createLink" title="插入链接">
+                            <i class="fas fa-link"></i>
+                        </button>
+                        <button class="toolbar-btn" data-command="insertImage" title="插入图片">
+                            <i class="fas fa-image"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="toolbar-group">
+                        <button class="toolbar-btn" data-command="justifyLeft" title="左对齐">
+                            <i class="fas fa-align-left"></i>
+                        </button>
+                        <button class="toolbar-btn" data-command="justifyCenter" title="居中">
+                            <i class="fas fa-align-center"></i>
+                        </button>
+                        <button class="toolbar-btn" data-command="justifyRight" title="右对齐">
+                            <i class="fas fa-align-right"></i>
+                        </button>
+                    </div>
+                    
+                    <button class="toolbar-btn" id="clearBtn" title="清空内容">
+                        <i class="fas fa-trash-alt"></i> 清空
+                    </button>
+                </div>
+                
+                <div class="editor-area" id="editor" contenteditable="true">
+                    <h1>欢迎使用富文本编辑器</h1>
+                    <p>这是一个<strong>功能完整</strong>的富文本编辑器示例。您可以在此处编辑文本，并使用上方工具栏进行<em>格式设置</em>。</p>
+                    
+                    <h2>主要特性</h2>
+                    <ul>
+                        <li>实时预览编辑内容</li>
+                        <li>支持多种文本格式</li>
+                        <li>响应式设计，适应各种屏幕</li>
+                        <li>简洁直观的用户界面</li>
+                    </ul>
+                    
+                    <h2>使用示例</h2>
+                    <p>您可以尝试：</p>
+                    <ol>
+                        <li>选中文本并使用工具栏按钮设置格式</li>
+                        <li>点击"插入链接"按钮添加超链接</li>
+                        <li>使用标题按钮创建不同级别的标题</li>
+                    </ol>
+                    
+                    <p>右侧将实时显示渲染效果。</p>
+                    
+                    <blockquote>
+                        这是一个引用示例。富文本编辑在现代Web应用中非常常见。
+                    </blockquote>
+                    
+                    <p>您还可以插入图片链接，例如：</p>
+                    <p><img src="https://picsum.photos/400/200" alt="示例图片" style="max-width:100%; height:auto; border-radius:5px;"></p>
+                </div>
+            </div>
+            
+            <div class="preview-container">
+                <div class="section-title">
+                    <i class="fas fa-eye"></i> 实时预览
+                </div>
+                <div class="preview-area" id="preview"></div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>富文本编辑器示例 | 使用HTML5 contenteditable属性实现 | 实时渲染预览</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取DOM元素
+            const editor = document.getElementById('editor');
+            const preview = document.getElementById('preview');
+            const toolbarButtons = document.querySelectorAll('.toolbar-btn');
+            const clearBtn = document.getElementById('clearBtn');
+            
+            // 初始化预览
+            updatePreview();
+            
+            // 为编辑区域添加输入事件监听
+            editor.addEventListener('input', updatePreview);
+            editor.addEventListener('keyup', updatePreview);
+            editor.addEventListener('paste', function(e) {
+                // 处理粘贴事件，确保预览更新
+                setTimeout(updatePreview, 10);
+            });
+            
+            // 为工具栏按钮添加点击事件
+            toolbarButtons.forEach(button => {
+                if (button.id !== 'clearBtn') {
+                    button.addEventListener('click', function() {
+                        const command = this.dataset.command;
+                        const value = this.dataset.value;
+                        
+                        // 处理特殊命令
+                        if (command === 'createLink') {
+                            const url = prompt('请输入链接URL:', 'https://example.com');
+                            if (url) {
+                                document.execCommand(command, false, url);
+                            }
+                        } else if (command === 'insertImage') {
+                            const url = prompt('请输入图片URL:', 'https://picsum.photos/400/300');
+                            if (url) {
+                                document.execCommand(command, false, url);
+                            }
+                        } else {
+                            // 执行标准命令
+                            document.execCommand(command, false, value);
+                        }
+                        
+                        // 更新预览
+                        updatePreview();
+                        // 焦点回到编辑区域
+                        editor.focus();
+                    });
+                }
+            });
+            
+            // 清空按钮事件
+            clearBtn.addEventListener('click', function() {
+                if (confirm('确定要清空所有内容吗？')) {
+                    editor.innerHTML = '<p><br></p>';
+                    updatePreview();
+                    editor.focus();
+                }
+            });
+            
+            // 更新预览函数
+            function updatePreview() {
+                // 获取编辑区域内容
+                let content = editor.innerHTML;
+                
+                // 处理图片，确保响应式
+                content = content.replace(/<img/g, '<img style="max-width:100%; height:auto; border-radius:5px;"');
+                
+                // 设置预览区域内容
+                preview.innerHTML = content;
+                
+                // 如果没有内容，显示提示
+                if (!content.trim() || content === '<p><br></p>' || content === '<br>') {
+                    preview.innerHTML = '<p style="color:#999; text-align:center; padding:40px;">预览将在此处显示...</p>';
+                }
+            }
+            
+            // 添加键盘快捷键支持
+            document.addEventListener('keydown', function(e) {
+                // Ctrl+B: 加粗
+                if (e.ctrlKey && e.key === 'b') {
+                    e.preventDefault();
+                    document.execCommand('bold');
+                    updatePreview();
+                }
+                
+                // Ctrl+I: 斜体
+                if (e.ctrlKey && e.key === 'i') {
+                    e.preventDefault();
+                    document.execCommand('italic');
+                    updatePreview();
+                }
+                
+                // Ctrl+U: 下划线
+                if (e.ctrlKey && e.key === 'u') {
+                    e.preventDefault();
+                    document.execCommand('underline');
+                    updatePreview();
+                }
+            });
+            
+            // 添加编辑区域点击事件，更新工具栏按钮状态
+            editor.addEventListener('click', function() {
+                updateToolbarButtons();
+            });
+            
+            editor.addEventListener('keyup', function() {
+                updateToolbarButtons();
+            });
+            
+            // 更新工具栏按钮状态（活动/非活动）
+            function updateToolbarButtons() {
+                toolbarButtons.forEach(button => {
+                    const command = button.dataset.command;
+                    
+                    if (command) {
+                        // 检查当前选择是否应用了该格式
+                        const isActive = document.queryCommandState(command);
+                        
+                        if (isActive) {
+                            button.classList.add('active');
+                        } else {
+                            button.classList.remove('active');
+                        }
+                    }
+                });
+            }
+            
+            // 初始化工具栏按钮状态
+            updateToolbarButtons();
+        });
+    </script>
+</body>
+</html>

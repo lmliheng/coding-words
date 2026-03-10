@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 // 1. 确保启用 CORS
 
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://127.0.0.1:3000']
+  origin: ['http://localhost:3000', 'http://127.0.0.1:3000', 'http://localhost:3001', 'http://127.0.0.1:3001', 'http://localhost:3002', 'http://127.0.0.1:3002']
 }));
 
 
@@ -83,13 +83,15 @@ async function startServer() {
   const rankingsRoutes = require('./routes/rankings');
   const manageRoutes = require('./routes/manage');
   const wordRoutes = require('./routes/word');
+  const searchRoutes = require('./routes/search');
   app.use('/api/auth', authRoutes);
   app.use('/api/upload', uploadRoutes);
   app.use('/api/rankings', rankingsRoutes);
   app.use('/api/manage', manageRoutes);
   app.use('/api/Onlyword', wordRoutes);
+  app.use('/api/search', searchRoutes);
   
-  const PORT = process.env.PORT || 3000;
+  const PORT = process.env.PORT || 3002;
   app.listen(PORT, () => {
     console.log(`服务器运行在端口 ${PORT}`);
   });
