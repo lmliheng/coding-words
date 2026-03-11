@@ -65,11 +65,13 @@ function renderWordDetails(word) {
             tagsContainer.innerHTML = '';
             try {
                 let tags = [];
+                console.log('原始标签:', word.tag);
                 if (Array.isArray(word.tag)) {
                     tags = word.tag;
                 } else if (typeof word.tag === 'string') {
                     tags = JSON.parse(word.tag);
                 }
+                console.log('解析后的标签:', tags);
                 
                 if (Array.isArray(tags) && tags.length > 0) {
                     tags.forEach(tag => {
@@ -96,12 +98,9 @@ function renderWordDetails(word) {
         try {
             const timeElement = document.getElementById('word-update-time');
             if (timeElement) {
-                if (word.updated_at) {
-                    timeElement.textContent = `更新时间: ${new Date(word.updated_at).toLocaleString()}`;
-                    console.log('更新时间渲染为:', new Date(word.updated_at).toLocaleString());
-                } else if (word.created_at) {
-                    timeElement.textContent = `更新时间: ${new Date(word.created_at).toLocaleString()}`;
-                    console.log('更新时间渲染为:', new Date(word.created_at).toLocaleString());
+                 if (word.created_at) {
+                    timeElement.textContent = `创建时间: ${new Date(word.created_at).toLocaleString()}`;
+                    console.log('创建时间渲染为:', new Date(word.created_at).toLocaleString());
                 } else {
                     timeElement.textContent = '更新时间: 未知';
                     console.log('更新时间渲染为: 未知');

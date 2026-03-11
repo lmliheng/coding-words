@@ -37,7 +37,10 @@ function initSearchResults() {
             }
         }
     });
-    
+
+
+
+
     // 执行搜索
     async function performSearch(searchTerm) {
         // 清空结果容器
@@ -72,17 +75,20 @@ function initSearchResults() {
                 noResult.textContent = '没有找到匹配的专业名词';
                 wordsContainer.appendChild(noResult);
             } else {
-                
+                console.log(`搜索结果数量: ${data.length}`);
+                for (let i = 0; i < data.length; i++) {
+                    console.log(`第 ${i+1} 个专业名词: ${data[i].word_name}`);
+                    console.log(`第 ${i+1} 个专业名词标签: ${data[i].tag}`);
+                // tag 不好处理，先不显示
                     const wordCard = document.createElement('div');
                     wordCard.className = 'word-card';
                     wordCard.innerHTML = `
-                        <h3>${data[0].word_name}</h3>
-                        <span class="word-type">${data[0].tag}</span>
-                        <a href="../word/word.html?id=${data[0].id}" class="word-link">查看详情</a>
+                        <a href="../word/word.html?id=${data[i].id}" ><h3>${data[i].word_name}</h3></a>
+                        <text>${data[i].content}</text>
                     `;
                     wordsContainer.appendChild(wordCard);
             }
-        } catch (error) {
+        }} catch (error) {
             console.error('搜索失败:', error);
             // 移除加载中
             wordsContainer.removeChild(loading);

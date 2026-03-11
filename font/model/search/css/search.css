@@ -1,0 +1,43 @@
+.search-results {
+   width: 60%;
+   margin: 0 auto;
+   margin-top: 20px;
+   border-radius: 12px;
+}
+
+.word-card {
+    background: rgba(255, 255, 255, 0.25); /* 半透明白色背景 */
+    backdrop-filter: blur(12px); /* 核心毛玻璃效果 */
+    -webkit-backdrop-filter: blur(12px); /* Safari支持 */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* 轻微边框 */
+
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+
+
+.word-card a {
+    color: #1E40AF;
+    text-decoration: none;
+}
+
+.word-card h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.word-card text {
+    font-size: 14px;
+    color: #6B7280;
+}
+
+.word-type {
+    font-size: 14px;
+    color: #6B7280;
+}
+
