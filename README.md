@@ -1,5 +1,5 @@
 ## 专业名词大全🥇
-<img src="./image/logo-removebg-preview.png" alt="logo" width="100" height="100" align="center">
+<img src="./image/logo-removebg-preview.png" alt="logo" width="200" height="200" align="center">
 欢迎访问 **专业名词大全**😲，一个致力于收集和整理各个领域内各种专业术语的在线知识库
 我的目标是打造一个全面、准确且易于理解的词汇表，帮助开发者、学生和爱好者快速掌握某领域相关的术语含义
 立刻开始💐探索词汇表，[在线访问](http://codeword.liheng.work/)🚡
