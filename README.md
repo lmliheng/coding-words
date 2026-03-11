@@ -1,13 +1,15 @@
 ## 专业名词大全🥇
-<img src="./image/logo-removebg-preview.png" alt="logo" width="100" height="100" align="center">
+<img src="./image/logo-removebg-preview.png" alt="logo" width="200" height="200" align="center">
+
 欢迎访问 **专业名词大全**😲，一个致力于收集和整理各个领域内各种专业术语的在线知识库
-我的目标是打造一个全面、准确且易于理解的词汇表，帮助开发者、学生和爱好者快速掌握某领域相关的术语含义
-立刻开始💐探索词汇表，[在线访问](http://codeword.liheng.work/)🚡
+我的目标是打造一个全面、准确且易于理解的词汇表，帮助快速掌握某领域相关的术语含义
+立刻开始💐探索词汇表
+
  
 ### 本地部署
 如果您想在本地运行此项目，您可以按照以下步骤操作：
 
-1. **安装依赖**：
+1. **安装依赖，运行后端**：
    ```bash
    cd coding-words/back
    npm install
@@ -20,6 +22,14 @@
    source coding-words/data/sql/codeword_word_2026-03-11_224430.sql;
    ```
    项目将在codeword/font/index.html运行
+
+### 运行
+<img width="1182" height="612" alt="{5D566FA4-F9F9-4F73-934D-A51096930952}" src="https://github.com/user-attachments/assets/a2bab2af-ded5-40a6-9e7c-96c4180f8cf7" />
+<img width="1220" height="604" alt="image" src="https://github.com/user-attachments/assets/6ea9e691-fd0c-4cdc-98f2-9d29ad787452" />
+<img width="1257" height="930" alt="image" src="https://github.com/user-attachments/assets/524f7e25-bfa2-4853-ab90-ce2a531742a7" />
+<img width="713" height="876" alt="image" src="https://github.com/user-attachments/assets/61e8751d-3966-4627-9d76-11beca5d1675" />
+<img width="1153" height="543" alt="image" src="https://github.com/user-attachments/assets/44622981-3a81-411f-a8c2-d7681e87c64b" />
+
 
 ### 贡献指南🥈
 我非常欢迎社区成员对项目做出贡献！您的参与将使这个知识库更加完善和丰富
