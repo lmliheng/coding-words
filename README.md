@@ -4,6 +4,7 @@
 欢迎访问 **专业名词大全**😲，一个致力于收集和整理各个领域内各种专业术语的在线知识库
 我的目标是打造一个全面、准确且易于理解的词汇表，帮助快速掌握某领域相关的术语含义
 立刻开始💐探索词汇表
+
  
 ### 本地部署
 如果您想在本地运行此项目，您可以按照以下步骤操作：
@@ -21,6 +22,13 @@
    source coding-words/data/sql/codeword_word_2026-03-11_224430.sql;
    ```
    项目将在codeword/font/index.html运行
+
+### 运行
+<img width="1166" height="624" alt="image" src="https://github.com/user-attachments/assets/1ae230bd-0fb8-440f-b369-3957d412c9ad" />
+<img width="1257" height="930" alt="image" src="https://github.com/user-attachments/assets/524f7e25-bfa2-4853-ab90-ce2a531742a7" />
+<img width="713" height="876" alt="image" src="https://github.com/user-attachments/assets/61e8751d-3966-4627-9d76-11beca5d1675" />
+<img width="1153" height="543" alt="image" src="https://github.com/user-attachments/assets/44622981-3a81-411f-a8c2-d7681e87c64b" />
+
 
 ### 贡献指南🥈
 我非常欢迎社区成员对项目做出贡献！您的参与将使这个知识库更加完善和丰富
