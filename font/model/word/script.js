@@ -1,8 +1,12 @@
+
+
 // 从URL中获取专业名词ID
 function getWordId() {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get('id');
 }
+
+
 
 // 获取专业名词详细信息
 async function getWordDetails(wordId) {
@@ -35,12 +39,11 @@ function renderWordDetails(word) {
         const wordContent = document.querySelector('.word-content');
         wordContent.innerHTML = `
             <div class="word-meta">
-            <div class="word-meta-content">
-                <h1 id="word-title"></h1>
-                <div class="tags" id="word-tags"></div>
-                
-            </div>
-            <div class="update-time" id="word-update-time"></div>
+            <h1 id="word-title"></h1>
+                <div class="word-info-container">
+                    <div class="tags" id="word-tags"></div>
+                    <div class="update-time" id="word-update-time"></div>
+                </div>
             </div>
         
             

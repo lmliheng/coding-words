@@ -1,3 +1,20 @@
+// 转义函数
+// 文本保留HTML标签
+function escapeHtml(text) {
+  const map = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  };
+  return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+}
+
+
+//************************************************ */
+
+
 // 检查登录状态
 function checkAuth() {
     const token = localStorage.getItem('token');
@@ -55,7 +72,7 @@ function renderWordsTable(words) {
         
         row.innerHTML = `
             <td>${word.id}</td>
-            <td>${word.word_name}</td>
+            <td>${escapeHtml(word.word_name)}</td>
             <td>
                 <div class="tag-list">
                     ${tags.map(tag => `<span class="tag">${tag}</span>`).join('')}

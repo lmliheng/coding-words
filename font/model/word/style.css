@@ -68,15 +68,15 @@ body {
     border-bottom: 1px solid #e5e7eb;
 }
 
-
-.word-meta-content {
+.word-info-container {
     display: flex;
-    
+
 }
 
+
 .tags {
-    margin-left: 10px;
-    margin-top: 25px;
+    margin-left: 0px;
+    margin-top: -3px;
    
   
 }
@@ -92,7 +92,7 @@ body {
 }
 
 .update-time {
-    font-size: 14px;
+    font-size: 12px;
     color: #6b7280;
 }
 

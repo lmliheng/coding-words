@@ -1,3 +1,19 @@
+// 转义函数
+// 文本保留HTML标签
+function escapeHtml(text) {
+  const map = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  };
+  return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+}
+
+//************************************** */
+
+
 // 搜索结果页面功能
 function initSearchResults() {
     const searchInput = document.getElementById('search-input');
@@ -83,8 +99,8 @@ function initSearchResults() {
                     const wordCard = document.createElement('div');
                     wordCard.className = 'word-card';
                     wordCard.innerHTML = `
-                        <a href="../word/word.html?id=${data[i].id}" ><h3>${data[i].word_name}</h3></a>
-                        <text>${data[i].content}</text>
+                        <a href="../word/word.html?id=${data[i].id}" ><h3>${escapeHtml(data[i].word_name)}</h3></a>
+                        <text>${escapeHtml(data[i].content)}</text>
                     `;
                     wordsContainer.appendChild(wordCard);
             }

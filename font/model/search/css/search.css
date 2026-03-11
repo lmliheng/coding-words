@@ -34,10 +34,18 @@
 .word-card text {
     font-size: 14px;
     color: #6B7280;
+
+    
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* 最多显示1行文本 */
+    -webkit-box-orient: vertical;
+     white-space: normal;
+     overflow: hidden;
 }
 
 .word-type {
     font-size: 14px;
     color: #6B7280;
 }
+
 

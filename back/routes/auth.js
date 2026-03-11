@@ -5,12 +5,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 
-
-
-
 dotenv.config();
-
-
 
 // 数据库连接
 let db;

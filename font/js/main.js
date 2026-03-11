@@ -1,3 +1,18 @@
+// 转义函数
+// 文本保留HTML标签
+function escapeHtml(text) {
+  const map = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  };
+  return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+}
+
+//************************************************ */
+
 // 渲染热搜榜
 async function renderHotSearch() {
     const hotSearchContainer = document.getElementById('hot-search');
@@ -17,7 +32,7 @@ async function renderHotSearch() {
                 const rankingSearchItem = document.createElement('div');
                 rankingSearchItem.className = 'ranking-search-item';
                 rankingSearchItem.innerHTML = `
-                    <text>${index + 1}. <a href="model/word/word.html?id=${item.id}" class="ranking-link">${item.word_name}</a></text>
+                    <text>${index + 1}. <a href="model/word/word.html?id=${item.id}" class="ranking-link">${escapeHtml(item.word_name)}</a></text>
                     <text class="ranking-search-time">${item.read_time}</text>
                 `;
                 hotSearchContainer.appendChild(rankingSearchItem);
