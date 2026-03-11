@@ -24,7 +24,8 @@
    项目将在codeword/font/index.html运行
 
 ### 运行
-<img width="1166" height="624" alt="image" src="https://github.com/user-attachments/assets/1ae230bd-0fb8-440f-b369-3957d412c9ad" />
+<img width="1182" height="612" alt="{5D566FA4-F9F9-4F73-934D-A51096930952}" src="https://github.com/user-attachments/assets/a2bab2af-ded5-40a6-9e7c-96c4180f8cf7" />
+<img width="1220" height="604" alt="image" src="https://github.com/user-attachments/assets/6ea9e691-fd0c-4cdc-98f2-9d29ad787452" />
 <img width="1257" height="930" alt="image" src="https://github.com/user-attachments/assets/524f7e25-bfa2-4853-ab90-ce2a531742a7" />
 <img width="713" height="876" alt="image" src="https://github.com/user-attachments/assets/61e8751d-3966-4627-9d76-11beca5d1675" />
 <img width="1153" height="543" alt="image" src="https://github.com/user-attachments/assets/44622981-3a81-411f-a8c2-d7681e87c64b" />
