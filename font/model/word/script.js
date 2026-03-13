@@ -19,6 +19,7 @@ async function getWordDetails(wordId) {
             console.log("***************************************")
             console.log('获取专业名词详情成功-getWordDetails:', data.word);
             console.log("***************************************")
+            
             return data.word;
         } else {
             throw new Error(data.message);
@@ -45,8 +46,6 @@ function renderWordDetails(word) {
                     <div class="update-time" id="word-update-time"></div>
                 </div>
             </div>
-        
-            
             <div class="markdown-body" id="word-body">
                 <!-- 富文本内容将通过JavaScript动态填充 -->
             </div>

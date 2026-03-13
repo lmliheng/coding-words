@@ -13,7 +13,7 @@ body {
 }
 
 .container {
-    max-width: 800px;
+    width: 100%;
     margin: 0 auto;
     padding: 20px;
 }
@@ -65,18 +65,18 @@ body {
 }
 
 .form-group input[type="text"] {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #e5e7eb;
-    border-radius: 4px;
-    font-size: 16px;
-    transition: border-color 0.3s;
+border: none; /* 移除默认边框 */
+outline: none; /* 移除聚焦时的轮廓线 */
+padding: 8px; /* 内边距让输入更舒适 */
+font-size: 16px; /* 字体大小 */
+background-color: transparent; /* 背景透明，可选 */
+
 }
 
 .form-group input[type="text"]:focus {
     outline: none;
     border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+   
 }
 
 /* 标签样式 */

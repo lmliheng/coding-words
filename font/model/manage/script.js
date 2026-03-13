@@ -82,7 +82,7 @@ function renderWordsTable(words) {
             <td>${word.read_time || 0}</td>
             <td>
                 <div class="action-buttons">
-                    <a href="#" class="edit-btn" data-id="${word.id}">编辑</a>
+                    <a href="" class="edit-btn" data-id="${word.id}">编辑</a>
                     <a href="#" class="delete-btn" data-id="${word.id}">删除</a>
                 </div>
             </td>
@@ -101,8 +101,7 @@ function bindActionEvents() {
         btn.addEventListener('click', function(e) {
             e.preventDefault();
             const wordId = this.getAttribute('data-id');
-            alert(`编辑专业名词 ID: ${wordId}`);
-            // 这里可以实现编辑功能，比如跳转到编辑页面
+            window.location.href = `../editor/editor.html?id=${wordId}`;
         });
     });
     

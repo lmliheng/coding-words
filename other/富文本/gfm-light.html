@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- 引入highlight.js样式 -->
+  <link rel="stylesheet" 
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
+</head>
+<style>
+ /* 自定义高亮样式 */
+.hljs {
+  background: #c2c7ca;
+  border-radius: 6px;
+  padding: 16px;
+  font-size: 14px;
+  line-height: 1.5;
+  overflow-x: auto;
+}
+
+/* 行号支持 */
+.hljs-ln-numbers {
+  text-align: center;
+  color: #ccc;
+  border-right: 1px solid #ccc;
+  vertical-align: top;
+  padding-right: 8px;
+}
+
+
+</style>
+<body>
+  <div id="content"></div>
+
+  <!-- 引入库 -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  
+  <script>
+    // 配置marked
+    marked.setOptions({
+      highlight: function(code, lang) {
+        if (lang && hljs.getLanguage(lang)) {
+          return hljs.highlight(code, { language: lang }).value;
+        }
+        return hljs.highlightAuto(code).value;
+      }
+    });
+
+    // 示例Markdown
+    const markdown = 
+    `\`\`\`javascript
+function hello() {
+  console.log('Hello, GFM!');
+  return 42;
+}
+\`\`\``;
+
+    // 渲染
+    document.getElementById('content').innerHTML = marked.parse(markdown);
+    
+    // 确保代码块有正确类名
+    document.querySelectorAll('pre code').forEach((block) => {
+      hljs.highlightElement(block);
+    });
+  </script>
+</body>
+</html>

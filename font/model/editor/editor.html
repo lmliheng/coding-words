@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>编辑</title>
+    <link rel="icon" href="../../../image/logo-removebg-preview.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde@2.18.0/dist/easymde.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="upload-header">
+         
+            <a href="../../index.html" class="back-link">返回首页</a>
+        </header>
+        
+        <main class="upload-form">
+            <form id="upload-form">
+                <div class="form-group">
+                    <label for="word-title">标题</label>
+                    <input type="text" id="word-title" name="title" placeholder="请输入标题" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>标签</label>
+                    <div class="tag-container">
+                        <div class="tag-category">
+                            <h3>科技</h3>
+                            <div class="tag-options">
+                                <label><input type="checkbox" name="tags" value="前端"> 前端</label>
+                                <label><input type="checkbox" name="tags" value="后端"> 后端</label>
+                                <label><input type="checkbox" name="tags" value="移动开发"> 移动开发</label>
+                                <label><input type="checkbox" name="tags" value="人工智能"> 人工智能</label>
+                                <label><input type="checkbox" name="tags" value="区块链"> 区块链</label>
+                            </div>
+                        </div>
+                        
+                        <div class="tag-category">
+                            <h3>生活</h3>
+                            <div class="tag-options">
+                                <label><input type="checkbox" name="tags" value="健康"> 健康</label>
+                                <label><input type="checkbox" name="tags" value="美食"> 美食</label>
+                                <label><input type="checkbox" name="tags" value="旅行"> 旅行</label>
+                                <label><input type="checkbox" name="tags" value="娱乐"> 娱乐</label>
+                                <label><input type="checkbox" name="tags" value="体育"> 体育</label>
+                            </div>
+                        </div>
+                        
+                        <div class="tag-category">
+                            <h3>其他</h3>
+                            <div class="tag-options">
+                                <label><input type="checkbox" name="tags" value="财经"> 财经</label>
+                                <label><input type="checkbox" name="tags" value="教育"> 教育</label>
+                                <label><input type="checkbox" name="tags" value="法律"> 法律</label>
+                                <label><input type="checkbox" name="tags" value="艺术"> 艺术</label>
+                                <label><input type="checkbox" name="tags" value="历史"> 历史</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="word-content">内容</label>
+                    <textarea id="word-content" name="content" placeholder="请输入详细描述（支持Markdown格式）"></textarea>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn">更新</button>
+                    <button type="reset" class="reset-btn">重置</button>
+                </div>
+            </form>
+        </main>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/easymde@2.18.0/dist/easymde.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+            // 监听ESC键
+                document.addEventListener('keydown', function(event) {
+                        if (event.key === 'Escape') {
+            // 返回首页
+                window.location.href = '../../index.html';
+    }
+});
+    </script>
+</body>
+</html>

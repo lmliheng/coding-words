@@ -1,0 +1,43 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="content"></div>
+    <script src="https://cdn.jsdelivr.net/npm/@oblivionocean/minigfm@latest/dist/index.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/highlight.js@latest/lib/highlight.min.js"></script>
+    
+        
+        <div id="md-container"></div>
+
+    <script>
+     const mdRenderer = new MiniGFM();
+    // 配置marked
+    marked.setOptions({
+      highlight: function(code, lang) {
+        if (lang && hljs.getLanguage(lang)) {
+          return hljs.highlight(code, { language: lang }).value;
+        }
+        return hljs.highlightAuto(code).value;
+      }
+    });
+// 解析Markdown为标准HTML
+
+const htmlStr = mdRenderer.parse('## 1. 安装\n\n```bash\nnpm install minigfm\n```\n\n## 2. 使用\n\n```javascript\nimport MiniGFM from \'minigfm\';\n\nconst mdRenderer = new MiniGFM();\n\nconst htmlStr = mdRenderer.parse(\'# Hello World\');\n\nconsole.log(htmlStr); // <h1>Hello World</h1>\n```');
+  
+    
+    // 确保代码块有正确类名
+    document.querySelectorAll('pre code').forEach((block) => {
+      hljs.highlightElement(block);
+    });
+// 挂载至页面
+
+document.getElementById('md-container').innerHTML = htmlStr;
+    </script>
+</body>
+</html>

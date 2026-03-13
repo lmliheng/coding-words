@@ -1,17 +1,20 @@
 // 初始化Markdown编辑器
-const easyMDE = new EasyMDE({
-    element: document.getElementById('word-content'),
-    spellChecker: false,
-    placeholder: '请输入专业名词的详细描述（支持Markdown格式）',
-    toolbar: [
-        'bold', 'italic', 'heading', '|',
-        'code', 'quote', 'unordered-list', 'ordered-list', '|',
-        'link', 'image', 'table', '|',
-        'preview', 'side-by-side', 'fullscreen', '|',
-        'guide'
-    ]
-});
-
+            var vditor = null;
+            window.onload = function() {
+                vditor = new Vditor(document.getElementById('content'), {
+                    cache: {
+                        enable: false
+                    },
+                    "height": "70vh",
+                    "icon": "material",  
+                    "mode": "sv",
+                    "preview": {
+                        "mode": "both"
+                    },
+                    "placeholder": "codeword使用Vditor 支持所见即所得（富文本）、即时渲染和分屏预览模式"
+                });
+            } 
+// 需要改进
 
 
 
@@ -60,7 +63,7 @@ uploadForm.addEventListener('submit', async (e) => {
     
     // 获取表单数据
     const word_name = document.getElementById('word-title').value;
-    const content = easyMDE.value();
+    const content = vditor.getValue();
     
     // 获取选中的标签
     const selectedTags = [];
@@ -74,10 +77,10 @@ uploadForm.addEventListener('submit', async (e) => {
         return;
     }
     
-    if (selectedTags.length === 0) {
-        alert('请至少选择一个标签');
-        return;
-    }
+    // if (selectedTags.length === 0) {
+    //     alert('请至少选择一个标签');
+    //     return;
+    // }
     
     // 构建表单数据
     const formData = {
@@ -105,7 +108,7 @@ uploadForm.addEventListener('submit', async (e) => {
 
             // 清空表单和编辑器
             uploadForm.reset();
-            easyMDE.value('');
+            vditor.setValue('');
         } else {
             alert('上传失败: ' + data.message);
         }

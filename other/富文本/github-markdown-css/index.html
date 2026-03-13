@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="github-markdown.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <title>Markdown 示例文档</title>
+    </head>
+    <style>
+	.markdown-body {
+		box-sizing: border-box;
+		min-width: 200px;
+		max-width: 980px;
+		margin: 0 auto;
+		padding: 45px;
+	}
+
+	@media (max-width: 767px) {
+		.markdown-body {
+			padding: 15px;
+		}
+	}
+</style>
+
+
+    <body>
+     <article class="markdown-body">
+ <h1>Markdown 元素示例</h1>
+<p>此文档展示了如何将常见的Markdown元素渲染为HTML，并应用&quot;GitHub Markdown CSS&quot;样式。</p>
+<h2>1. 表格</h2>
+<p>一个展示不同编程语言特性的简单表格：</p>
+<table>
+<thead>
+<tr>
+<th>语言</th>
+<th>类型</th>
+<th>主要用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python</td>
+<td>动态，解释型</td>
+<td>Web开发，数据科学，AI</td>
+</tr>
+<tr>
+<td>JavaScript</td>
+<td>动态，解释型</td>
+<td>Web前端，服务器端（Node.js）</td>
+</tr>
+<tr>
+<td>Java</td>
+<td>静态，编译型</td>
+<td>企业级应用，安卓开发</td>
+</tr>
+<tr>
+<td>C++</td>
+<td>静态，编译型</td>
+<td>系统/游戏开发，高性能计算</td>
+</tr>
+</tbody>
+</table>
+<h2>2. 列表</h2>
+<h3>无序列表（项目符号）</h3>
+<ul>
+<li>前端技术栈
+<ul>
+<li>HTML</li>
+<li>CSS</li>
+<li>JavaScript</li>
+</ul>
+</li>
+<li>版本控制系统
+<ul>
+<li>Git</li>
+</ul>
+</li>
+</ul>
+<h3>有序列表（编号）</h3>
+<ol>
+<li>打开命令行/终端</li>
+<li>进入项目目录：<code>cd your-project</code></li>
+<li>初始化Git仓库：<code>git init</code></li>
+<li>添加文件到暂存区：<code>git add .</code></li>
+</ol>
+<h2>3. 代码段</h2>
+<h3>行内代码</h3>
+<p>在段落中使用 <code>console.log('Hello World')</code> 来打印信息。</p>
+<h3>代码块（无语法高亮）</h3>
+<pre class="hljs"><code><span class="hljs-section"># 这是一个Markdown标题</span>
+<span class="hljs-section">## 这是一个二级标题</span>
+这是一个普通段落。
+</code></pre>
+<h3>代码块（有语法高亮）</h3>
+<pre class="hljs"><code><span class="hljs-keyword">function</span> <span class="hljs-title function_">add</span>(<span class="hljs-params">a, b</span>) {
+    <span class="hljs-keyword">return</span> a + b;
+}
+</code></pre>
+<h2>4. 引用</h2>
+<blockquote>
+<p>这是Markdown中的引用块（Blockquote）。它通常用于突出显示来自其他来源的文字，或者表示一段重要的论述。</p>
+<p>引用块内可以包含多个段落、列表，甚至其他Markdown元素。</p>
+</blockquote>
+<blockquote>
+<p>嵌套引用示例：</p>
+<blockquote>
+<p>这是一段被嵌套的引用。</p>
+</blockquote>
+</blockquote>
+<h2>5. 强调文本与分隔线</h2>
+<p>文本可以设置为<em><em>粗体（加粗）<strong>或<em>斜体（强调）</em>，甚至可以</strong></em>粗斜体结合</em>**。</p>
+<hr>
+<p>上面是一条水平分隔线，用于分割不同的内容区块。</p>
+<h2>6. 链接与图片</h2>
+<p>这是一个指向<a href="https://www.github.com">GitHub官网</a>的链接。</p>
+<p>这是一个图片示例（由于文档中没有包含实际的图片标签，此处仅用替代文本表示，在真实Markdown中会被渲染为img标签）：</p>
+<p><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Logo"></p>
+<h2>7. 任务列表</h2>
+<ul>
+<li>[ ] 未完成的任务</li>
+<li>[x] 已完成的任务</li>
+<li>[ ] 另一个待办项</li>
+</ul>
+<p>以上内容涵盖了Markdown中常用的核心元素，当被Markdown解析器转换并由<code>github-markdown.css</code>渲染后，会呈现与GitHub风格一致的视觉效果。</p>
+
+</article>
+    </body>
+</html>

@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <title>
+            vditor编辑器
+        </title>
+        <link rel="stylesheet" href="https://unpkg.com/vditor/dist/index.css"/>
+        <script src="https://unpkg.com/vditor/dist/index.min.js">
+        </script>
+    </head>
+    
+    <body>
+        <input type="button" onclick="getContent()" value="确定" />
+        <div id="content">
+        </div>
+        <script>
+            var vditor = null;
+            window.onload = function() {
+                vditor = new Vditor(document.getElementById('content'), {
+                    cache: {
+                        enable: false
+                    },
+                    "mode": "sv",
+                    "preview": {
+                        "mode": "both"
+                    }
+                });
+            } // 测试数据填充            function getContent() {
+            vditor.setValue("## 测试 \n ### 二级标题 ");
+        
+        </script>
+    </body>
+
+</html>

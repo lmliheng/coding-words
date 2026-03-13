@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ByteMD 编辑器示例</title>
+    <!-- 引入 ByteMD 的 CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/@bytemd/bytemd@1.x/dist/index.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/@bytemd/theme-github@1.x/dist/index.min.css">
+</head>
+<body>
+    <div id="editor-container"></div>
+    
+    <!-- 引入 ByteMD 核心库 -->
+    <script src="https://unpkg.com/@bytemd/bytemd@1.x/dist/index.min.js"></script>
+    
+    <!-- 引入常用插件（按需选择） -->
+    <script src="https://unpkg.com/@bytemd/plugin-gfm@1.x/dist/index.min.js"></script>
+    <script src="https://unpkg.com/@bytemd/plugin-highlight-ssr@1.x/dist/index.min.js"></script>
+    
+    <script>
+        // 初始化 ByteMD
+        const editor = new bytemd.ByteMD({
+            // 配置插件
+            plugins: [
+                bytemdPluginGfm(),
+                bytemdPluginHighlightSSR({
+                    // 主题配置
+                    theme: 'github'
+                })
+            ],
+            // 编辑器配置
+            locale: {
+                bold: '粗体',
+                italic: '斜体',
+                // ... 更多中文配置
+            }
+        });
+        
+        // 挂载编辑器
+        editor.mount(document.getElementById('editor-container'));
+        
+        // 设置初始内容
+        editor.setValue('# Hello ByteMD\n\n这是一个示例内容。');
+        
+        // 监听内容变化
+        editor.on('change', (e) => {
+            console.log('内容变化:', e.detail.value);
+        });
+    </script>
+</body>
+</html>
