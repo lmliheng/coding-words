@@ -84,11 +84,13 @@ async function startServer() {
   const manageRoutes = require('./routes/manage');
   const wordRoutes = require('./routes/word');
   const searchRoutes = require('./routes/search');
+  const updataInfoRoutes = require('./routes/updata_info');
   app.use('/api/auth', authRoutes);
   app.use('/api/upload', uploadRoutes);
   app.use('/api/rankings', rankingsRoutes);
   app.use('/api/manage', manageRoutes);
   app.use('/api/Onlyword', wordRoutes);
+  app.use('/api/info', updataInfoRoutes); 
   app.use('/api/search', searchRoutes);
   
   const PORT = process.env.PORT || 3000;

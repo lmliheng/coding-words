@@ -32,12 +32,15 @@ async function getUserInfo() {
     }
 }
 
+
+
+
 // 填充表单数据
 async function fillForm() {
     const userInfo = await getUserInfo();
     if (userInfo) {
         document.getElementById('username').value = userInfo.username || '';
-        document.getElementById('email').value = userInfo.email || '';
+        
     }
 }
 
@@ -47,19 +50,14 @@ async function submitForm(e) {
     
     const token = checkAuth();
     const username = document.getElementById('username').value;
-    const email = document.getElementById('email').value;
+    
     const password = document.getElementById('password').value;
     
-    // 验证表单
-    if (!username || !email) {
-        alert('用户名和邮箱不能为空');
-        return;
-    }
     
     // 构建表单数据
     const formData = {
         username,
-        email
+        
     };
     
     // 如果填写了密码，添加到表单数据
@@ -68,7 +66,7 @@ async function submitForm(e) {
     }
     
     try {
-        const response = await fetch('http://localhost:3000/api/auth/update-info', {
+        const response = await fetch('http://localhost:3000/api/info/update-info', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

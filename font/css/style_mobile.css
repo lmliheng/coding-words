@@ -1,20 +1,17 @@
-/* 全局样式 */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+
+
+/* 移动端设计 */
+@media (max-width: 620px) {
+  /* 当屏幕宽度≤600px时应用的样式 */
 
 body {
-
-
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   /* 添加微妙的背景模糊增强毛玻璃效果 */
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
     line-height: 1.6;
-    width: 60%;
+    width: 100%;
     height: 100vh;
     margin: 0 auto;
 }
@@ -210,10 +207,11 @@ header {
 
 /* 排行榜区域 */
 .rankings-section {
+
     display: flex;
-    justify-content: space-evenly;
-    margin-bottom: 40px;
-    align-items: stretch; /* 确保子项高度拉伸一致 */
+    margin: 0 auto;
+    flex-direction: column;
+    padding: 0 35px;
 }
 
 .ranking-item {
@@ -231,11 +229,13 @@ header {
     
     border-radius: 8px;
     padding: 16px;
-    width: 25%;
+   
     aspect-ratio: 1; /* 1:1 的正方形 */
     /* 或者 */
-    height: 300px; /* 固定高度 */
-    
+    height: 270px; /* 固定高度 */
+    width: 100%;
+    margin-bottom: 20px;
+      
 }
 
 .ranking-item-title{
@@ -326,42 +326,27 @@ header {
 
 
 
-/* 名词列表区域 */
 
 
 
 
-/* 页脚样式 */
 
 
 
 
-/* 响应式设计 */
-@media (max-width: 768px) {
-    .rankings-section {
-        flex-direction: column;
-    }
-    
-    .words-container {
-        grid-template-columns: 1fr;
-    }
-    
-    .header-content {
-        flex-direction: column;
-        gap: 15px;
-    }
-    
-    .logo h1 {
-        font-size: 20px;
-    }
-    
-    .search-section {
-        padding: 20px 0;
-    }
+
 }
 
-@media (min-width: 769px) and (max-width: 1024px) {
-    .words-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
+
+
+
+
+
+
+
+
+
+
+
+
+

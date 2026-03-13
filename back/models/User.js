@@ -26,6 +26,7 @@ const userSchema = new mongoose.Schema({
   }
 });
 
+
 // 密码加密
 userSchema.pre('save', async function(next) {
   if (!this.isModified('password')) {
@@ -35,6 +36,7 @@ userSchema.pre('save', async function(next) {
   this.password = await bcrypt.hash(this.password, salt);
   next();
 });
+
 
 // 新增：静态方法 - 生成加密后的密码
 userSchema.statics.generateHash = async function(password) {
@@ -46,6 +48,7 @@ userSchema.statics.generateHash = async function(password) {
     throw new Error('密码加密失败: ' + error.message);
   }
 };
+
 
 // 密码验证
 userSchema.methods.matchPassword = async function(password) {

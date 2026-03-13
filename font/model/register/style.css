@@ -167,6 +167,80 @@ form input.submit:hover {
     box-shadow: var(--primary-color) 0 10px 30px -10px;
 }
 
+/* 错误提示信息 */
+.error-message {
+    display: block;
+    font-size: 12px;
+    color: #f64f59;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+
+/* 消息显示 */
+.message {
+    display: none;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.message.success {
+    background-color: #e8f5e8;
+    color: #2e7d32;
+}
+
+.message.error {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+/* 登录链接 */
+.login-link {
+    text-align: center;
+    font-size: 14px;
+    color: var(--light-text-color);
+    margin-top: 10px;
+}
+
+.login-link a {
+    color: var(--primary-color);
+    font-weight: 500;
+    transition: color .3s;
+}
+
+.login-link a:hover {
+    color: var(--dark-color);
+    text-decoration: underline;
+}
+
+/* 验证码按钮 */
+#send-code {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border: none;
+    border-radius: 5px;
+    padding: 8px 15px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color .3s;
+}
+
+#send-code:hover {
+    background-color: #334cbf;
+}
+
+#send-code:disabled {
+    background-color: var(--light-text-color);
+    cursor: not-allowed;
+}
+
 .separator {
     position: relative;
     margin: 50px 0 30px;
@@ -216,6 +290,7 @@ form input.submit:hover {
     color: var(--white-color);
     box-shadow: none;
 }
+
 
 
 

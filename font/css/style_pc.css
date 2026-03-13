@@ -1,0 +1,339 @@
+/* 全局样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* 电脑端设计 */
+@media (min-width: 620px) {
+
+body {
+
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  /* 添加微妙的背景模糊增强毛玻璃效果 */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+    line-height: 1.6;
+    width: 60%;
+    height: 100vh;
+    margin: 0 auto;
+}
+
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* 头部样式 */
+header {
+    
+    color: white;
+    padding: 20px 0;
+    
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo h1 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.headico {
+    
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.headico img {
+    width: 30px;
+    height: 30px;
+}
+
+
+.login-btn button {
+    
+    background-color: #1E40AF;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: background-color 0.3s;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.username-container {
+    position: relative;
+    cursor: pointer;
+}
+
+.username {
+    font-weight: 500;
+    color: #1E40AF;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+
+
+.user-menu {
+
+    font-size: 14px;
+    
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 110px;
+    background-color: #ffffff;
+ 
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+    transform: translateY(-10px);
+}
+
+.username-container:hover .user-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.user-menu ul {
+    
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.user-menu li {
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.user-menu li:last-child {
+    border-bottom: none;
+}
+
+.user-menu a {
+    display: block;
+    padding: 10px 15px;
+    color:#1E40AF;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.user-menu a:hover {
+    background-color: #F3F4F6;
+}
+
+.login-btn button:hover {
+    background-color: #2563EB;
+}
+
+
+
+/* 搜索区域 */
+.search-section {
+    padding: 40px 0;
+    text-align: center;
+}
+
+.search-container {
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+    
+}
+
+.search-container img {
+    position: absolute;
+    right: 22px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+}
+
+#search-input {
+    width: 100%;
+    padding: 12px 40px 12px 20px;
+    font-size: 16px;
+    border: 2px solid #E5E7EB;
+    border-radius: 25px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+#search-input:focus {
+    border-color: #3B82F6;
+}
+
+#search-btn {
+    position: absolute;
+    right: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #399ae4;
+    color: white;
+    border: none;
+    padding: 22px 25px;
+   border-radius: 0px 25px 25px 0px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+#search-btn img {
+    width: 20px;
+    height: 20px;
+    left: 15px;
+}
+
+
+#search-btn:hover {
+    background-color: #2563EB;
+}
+
+/* 排行榜区域 */
+.rankings-section {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 40px;
+    align-items: stretch; /* 确保子项高度拉伸一致 */
+}
+
+.ranking-item {
+    
+     
+   background: rgba(255, 255, 255, 0.25); /* 半透明白色背景 */
+  backdrop-filter: blur(12px); /* 核心毛玻璃效果 */
+  -webkit-backdrop-filter: blur(12px); /* Safari支持 */
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.3); /* 轻微边框 */
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    0 4px 16px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4); /* 内阴影增强立体感 */
+    
+    border-radius: 8px;
+    padding: 16px;
+    width: 25%;
+    aspect-ratio: 1; /* 1:1 的正方形 */
+    /* 或者 */
+    height: 300px; /* 固定高度 */
+    
+}
+
+.ranking-item-title{
+
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #1E40AF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+
+
+.more-link {
+    text-decoration: none;
+    color: #666;
+    margin-bottom: 15px;
+    font-size: 13px;
+}
+.more-link img {
+    width: 19px;
+    height: 11px;
+}
+
+
+.ranking-item h4 {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #1E40AF;
+}
+
+.ranking-content {
+    min-height: 200px;
+    background-color: #F3F4F6;
+    border-radius: 4px;
+    padding: 15px;
+}
+
+.ranking-item:last-child {
+    margin-bottom: 0;
+}
+
+.ranking-content {
+    min-height: auto;
+    background-color: transparent;
+    padding: 0;
+    font-size: 14px;
+}
+
+.ranking-search-item {
+    margin-bottom: 15px;
+    margin-left: 15px;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.ranking-link {
+    color: #1E40AF;
+    text-decoration: none;
+    font-weight: 300;
+    transition: color 0.3s;
+    
+}
+
+.ranking-search-time{
+    font-size: 12px;
+    color: #6B7280;
+}
+
+
+.ranking-contributions-name {
+    font-size: 14px;
+    color: #2d2f33;
+}
+.ranking-contributions-value {
+    font-size: 12px;
+    color: #6B7280;
+    
+}
+
+
+}
+
+
+
+
+
+/* 名词列表区域 */
+
+
+
+
+/* 页脚样式 */
+
+
