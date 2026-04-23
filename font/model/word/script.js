@@ -59,7 +59,7 @@ function renderWordDetails(word) {
             document.getElementById('word-title').textContent = '未命名专业名词';
             console.log('标题渲染为: 未命名专业名词');
         }
-        console.log("***************************************")
+            console.log("***************************************")
 
         // 渲染标签
         const tagsContainer = document.getElementById('word-tags');
