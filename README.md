@@ -25,7 +25,13 @@
 
 ### 运行
 ### vuejs
-<video src="vue-app/code-word/src/assets/video/v.mp4" controls></video>
+
+
+
+https://github.com/user-attachments/assets/2ff1bac8-cb5f-40e2-927b-b7e88472c465
+
+
+
 
 #### Native html js
 
