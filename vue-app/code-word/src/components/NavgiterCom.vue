@@ -13,7 +13,10 @@ const props = defineProps({
 })
 
 const handleClickImg = () => {
-  //  window.open('https://github.com/lmliheng/coding-words', '_blank')
+    window.open('https://github.com/lmliheng/coding-words', '_blank')
+}
+
+const handleClickTitle = () => {
   router.push('/')
 }
 
@@ -61,7 +64,7 @@ onMounted(() => {
         <div class="w-3/5 h-full flex items-center justify-between">
             <div class="w-80 h-full flex items-center justify-center gap-5">
                  <img src="@/assets/github.svg" alt="" class="w-10 cursor-pointer" @click="handleClickImg">
-                 <p class="text-3xl font-bold text-sky-500">CodeWord</p>
+                 <p class="text-3xl font-bold text-sky-500" id="title" @click="handleClickTitle">CodeWord</p>
                  <!-- <icon name="peach" color="pink" /> -->
             </div>
         
@@ -89,3 +92,11 @@ onMounted(() => {
         </div>
     </div>
 </template>
+
+<style scoped>
+#title {
+    font-family: "CodeWord";
+    font-size: 32px;
+    cursor: pointer;
+}
+</style>

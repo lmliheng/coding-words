@@ -12,6 +12,7 @@
     "@tailwindcss/vite": "^4.2.4",
     "axios": "^1.15.2",
     "highlight.js": "^11.11.1",
+    "lmliheng-js": "^1.0.5",
     "marked": "^18.0.2",
     "pinia": "^3.0.4",
     "tailwindcss": "^4.2.4",
